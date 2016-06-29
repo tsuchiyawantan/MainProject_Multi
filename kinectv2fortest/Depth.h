@@ -62,7 +62,7 @@ public:
 	cv::Mat normalizeDepthImage;
 	cv::Mat contourImage;
 	Human human[6];
-	
+
 	void findDepthMaxMin(Human &human, int depth){
 		if (human.getDepthMax() < depth) human.setDepthMax(depth);
 		if (human.getDepthMin() > depth) human.setDepthMin(depth);
@@ -79,7 +79,7 @@ public:
 			if (id == 255) {
 				bodyDepthImage.at<UINT16>(y, x) = 65535;
 			}
-		else if (human[id].getHumanID() == -1){
+			else if (human[id].getHumanID() == -1){
 				human[id].setHumanID(id);
 			}
 			else {
@@ -104,10 +104,9 @@ public:
 		cv::Mat image2 = srcImg.clone();
 		contourImage = cv::Mat(srcImg.rows, srcImg.cols, CV_8UC1);
 		//dilate‚Å”’‚ğ–c’£
-		cv::dilate(image2, image2, cv::Mat(), cv::Point(-1, -1), 1);
+		//cv::dilate(image2, image2, cv::Mat(), cv::Point(-1, -1), 1);
 		//erode‚Å”’‚ğk¬
-		cv::erode(image2, image2, cv::Mat(), cv::Point(-1, -1), 3);
+		//cv::erode(image2, image2, cv::Mat(), cv::Point(-1, -1), 3);
 		cv::Canny(image2, contourImage, 20, 75);
-		
 	}
 };
